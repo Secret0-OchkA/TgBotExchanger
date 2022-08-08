@@ -1,10 +1,11 @@
-﻿using ApiTgBot.Models.EF.Tables;
+﻿using ApiTgBot.Models.EF;
+using ApiTgBot.Models.EF.Tables;
 using Microsoft.EntityFrameworkCore;
 using TgBot.Models.EF.Tables;
 
 namespace TgBot.Models.EF
 {
-    public class ApplicationContext : DbContext
+    public class ApplicationContext : DbContext, IApplicationContext
     {
         public DbSet<Account> Accounts { get; set; } = null!;
         public DbSet<Currency> Currencies { get; set; } = null!;

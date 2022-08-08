@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgBot", "TgBot\TgBot.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgBot.Tests", "TgBot.Tests\TgBot.Tests.csproj", "{EFD8DF1C-24B7-4573-AEAF-4B35CAA0AA78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiTgBot", "ApiTgBot\ApiTgBot.csproj", "{B1BA4FF5-FFE8-43D4-9CE3-DBF00C4A8356}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiTgBot", "ApiTgBot\ApiTgBot.csproj", "{B1BA4FF5-FFE8-43D4-9CE3-DBF00C4A8356}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiTgBot.Tests", "ApiTgBot.Tests\ApiTgBot.Tests.csproj", "{179D186F-1400-4012-B082-300153B979AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{B1BA4FF5-FFE8-43D4-9CE3-DBF00C4A8356}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1BA4FF5-FFE8-43D4-9CE3-DBF00C4A8356}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1BA4FF5-FFE8-43D4-9CE3-DBF00C4A8356}.Release|Any CPU.Build.0 = Release|Any CPU
+		{179D186F-1400-4012-B082-300153B979AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{179D186F-1400-4012-B082-300153B979AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{179D186F-1400-4012-B082-300153B979AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{179D186F-1400-4012-B082-300153B979AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
