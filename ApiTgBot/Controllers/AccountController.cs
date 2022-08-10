@@ -1,6 +1,5 @@
 ﻿using ApiTgBot.Models.EF;
-using TgBot.Models.EF;
-using TgBot.Models.EF.Tables;
+using ApiTgBot.Models.EF.Tables;
 
 namespace TgBot.Controllers
 {

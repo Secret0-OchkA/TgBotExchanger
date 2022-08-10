@@ -1,14 +1,20 @@
-﻿using ApiTgBot.Models.EF.Tables;
+﻿using ApiTgBot.Models.EF;
+using ApiTgBot.Models.EF.Tables;
 
 namespace ApiTgBot.Controllers
 {
-    public class ConverterController
+    public class ConverterController : IConvert
     {
-        IApplcationContext db;
+        IApplicationContext db;
 
-        public ConverterController(IApplcationContext db)
+        public ConverterController(IApplicationContext db)
         {
             this.db = db;
+        }
+
+        public Currency Convert(CurrencyType inType, decimal money, CurrencyType outType)
+        {
+            throw new NotImplementedException();
         }
     }
 }

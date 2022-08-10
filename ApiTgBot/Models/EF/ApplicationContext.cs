@@ -1,9 +1,7 @@
-﻿using ApiTgBot.Models.EF;
-using ApiTgBot.Models.EF.Tables;
+﻿using ApiTgBot.Models.EF.Tables;
 using Microsoft.EntityFrameworkCore;
-using TgBot.Models.EF.Tables;
 
-namespace TgBot.Models.EF
+namespace ApiTgBot.Models.EF
 {
     public class ApplicationContext : DbContext, IApplicationContext
     {

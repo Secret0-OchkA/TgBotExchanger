@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TgBot.Models.EF.Tables;
+
 
 namespace ApiTgBot.Tests.Tables
 {
@@ -69,7 +69,7 @@ namespace ApiTgBot.Tests.Tables
         public void Should_ThrowExc_When_MoneySig()
         {
             Currency currency = new();
-            currency.Amount = 9;
+            currency.Amount = -9;
             currency.Type = CurrencyType.USD;
 
             Assert.That(() => account.Deposit(currency), Throws.TypeOf<ArgumentException>());
@@ -81,7 +81,7 @@ namespace ApiTgBot.Tests.Tables
             currency.Amount = -10;
             currency.Type = CurrencyType.USD;
 
-            Assert.That(() => account.Deposit(currency), Throws.TypeOf<ArgumentException>());
+            Assert.That(() => account.Withdraw(currency), Throws.TypeOf<ArgumentException>());
         }
     }
 }

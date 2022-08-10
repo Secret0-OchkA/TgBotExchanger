@@ -1,6 +1,5 @@
 ﻿using ApiTgBot.Models.EF.Tables;
 using Microsoft.EntityFrameworkCore;
-using TgBot.Models.EF.Tables;
 
 namespace ApiTgBot.Models.EF
 {

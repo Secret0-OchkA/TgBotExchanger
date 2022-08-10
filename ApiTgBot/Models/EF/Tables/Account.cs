@@ -1,6 +1,4 @@
-﻿using ApiTgBot.Models.EF.Tables;
-
-namespace TgBot.Models.EF.Tables
+﻿namespace ApiTgBot.Models.EF.Tables
 {
     public partial class Account
     {
