@@ -9,7 +9,7 @@ namespace ApiTgBot.Models.EF.Tables
         public void Error(string message);
     }
 
-    public class Transfer //: ITransfer
+    public class Transfer : ITransfer
     {
         #region Database 
         public int Id { get; set; }
@@ -21,7 +21,7 @@ namespace ApiTgBot.Models.EF.Tables
         public string Code { get; set; } = "0000";
         [Required]
         public Currency Amount { get; set; } = new Currency();
-
+        public bool Confirmed { get; set; } = false;
         //photo_Id and files_Id in telegram
         public List<TransferArgument> arguments { get; set; } = new List<TransferArgument> { };
         #endregion
@@ -32,7 +32,11 @@ namespace ApiTgBot.Models.EF.Tables
         public TransferEventHandlerError? ErrorHandle;
         #endregion
 
-        public void Confirm() => ConfirmHandle?.Invoke(Amount);
+        public void Confirm()
+        {
+            Confirmed = true;
+            ConfirmHandle?.Invoke(Amount);
+        }
         public void Cancel() => CancelHandle?.Invoke();
         public void Error(string message) => ErrorHandle?.Invoke(message);
     }
