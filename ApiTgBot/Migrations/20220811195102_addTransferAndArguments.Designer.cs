@@ -4,6 +4,7 @@ using ApiTgBot.Models.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiTgBot.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220811195102_addTransferAndArguments")]
+    partial class addTransferAndArguments
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -92,6 +94,9 @@ namespace ApiTgBot.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("AccountOwnerId")
+                        .HasColumnType("int");
+
                     b.Property<int>("AmountId")
                         .HasColumnType("int");
 
@@ -103,14 +108,11 @@ namespace ApiTgBot.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ownerTransferId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("AmountId");
+                    b.HasIndex("AccountOwnerId");
 
-                    b.HasIndex("ownerTransferId");
+                    b.HasIndex("AmountId");
 
                     b.ToTable("Transfers");
                 });
@@ -149,21 +151,21 @@ namespace ApiTgBot.Migrations
 
             modelBuilder.Entity("ApiTgBot.Models.EF.Tables.Transfer", b =>
                 {
+                    b.HasOne("ApiTgBot.Models.EF.Tables.Account", "AccountOwner")
+                        .WithMany()
+                        .HasForeignKey("AccountOwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ApiTgBot.Models.EF.Tables.Currency", "Amount")
                         .WithMany()
                         .HasForeignKey("AmountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ApiTgBot.Models.EF.Tables.Account", "ownerTransfer")
-                        .WithMany()
-                        .HasForeignKey("ownerTransferId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("AccountOwner");
 
                     b.Navigation("Amount");
-
-                    b.Navigation("ownerTransfer");
                 });
 
             modelBuilder.Entity("ApiTgBot.Models.EF.Tables.TransferArgument", b =>

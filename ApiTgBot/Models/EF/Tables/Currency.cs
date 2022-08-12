@@ -1,14 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace ApiTgBot.Models.EF.Tables
+﻿namespace ApiTgBot.Models.EF.Tables
 {
     public class Currency
     {
         public int Id { get; set; }
         public CurrencyType Type { get; set; }
-        public decimal Amount { get; set; } 
+        public decimal Amount { get; set; }
 
-        public static Currency operator+(Currency a, Currency b)
+        public static Currency operator +(Currency a, Currency b)
         {
             if (a.Type != b.Type)
                 throw new ArgumentException("Not match currency tupes");
@@ -22,7 +20,7 @@ namespace ApiTgBot.Models.EF.Tables
             return result;
         }
 
-        public static Currency operator-(Currency a, Currency b)
+        public static Currency operator -(Currency a, Currency b)
         {
             if (a.Type != b.Type)
                 throw new ArgumentException("Not match currency tupes");
@@ -35,5 +33,12 @@ namespace ApiTgBot.Models.EF.Tables
             result.Type = a.Type;
             return result;
         }
+    }
+
+    public enum CurrencyType
+    {
+        RUB,
+        BTC,
+        USD,
     }
 }
