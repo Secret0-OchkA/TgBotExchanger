@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ApiTgBot.Tests.Tables
+﻿namespace ApiTgBot.Tests.Tables
 {
     internal class ExchangeRateTest
     {
@@ -19,8 +13,8 @@ namespace ApiTgBot.Tests.Tables
             exchangeRate.Rate = 2;
         }
 
-        [TestCase(CurrencyType.USD,CurrencyType.BTC)]
-        [TestCase(CurrencyType.BTC,CurrencyType.USD)]
+        [TestCase(CurrencyType.USD, CurrencyType.BTC)]
+        [TestCase(CurrencyType.BTC, CurrencyType.USD)]
         public void Should_GetType_When_InOtherType(CurrencyType type, CurrencyType expectType)
         {
             Currency currency = new();

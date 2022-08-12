@@ -1,20 +1,11 @@
-﻿using ApiTgBot.Models.EF.Tables;
-using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
-namespace ApiTgBot.Tests.Tables
+﻿namespace ApiTgBot.Tests.Tables
 {
     internal class AccountTest
     {
         Account account;
         int currencyCount;
         [SetUp]
-        public void Setup() 
+        public void Setup()
         {
             Currency a = new();
             a.Type = CurrencyType.USD;

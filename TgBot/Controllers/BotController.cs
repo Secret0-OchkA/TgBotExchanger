@@ -45,19 +45,43 @@ namespace TgBot.Controllers
             // Only process Message updates: https://core.telegram.org/bots/api#message
             if (update.Message is not { } message)
                 return;
-            // Only process text messages
-            if (message.Text is not { } messageText)
-                return;
 
             var chatId = message.Chat.Id;
 
-            Console.WriteLine($"Received a '{messageText}' message in chat {chatId}.");
+            await PhotoWork(botClient, update, cancellationToken);
 
-            // Echo received message text
-            Message sentMessage = await botClient.SendTextMessageAsync(
-                chatId: chatId,
-                text: "You said:\n" + messageText,
-                cancellationToken: cancellationToken);
+            //Console.WriteLine($"Received a '{messageText}' message in chat {chatId}.");
+
+            //// Echo received message text
+            //Message sentMessage = await botClient.SendTextMessageAsync(
+            //    chatId: chatId,
+            //    text: "You said:\n" + messageText,
+            //    cancellationToken: cancellationToken);
+        }
+
+        async Task PhotoWork(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+        {
+            // Only process Message updates: https://core.telegram.org/bots/api#message
+            if (update.Message is not { } message)
+                return;
+
+            if (update.Message.Photo != null)
+            {
+                var fileId = update.Message.Photo.Last().FileId;
+                Message messageResponse = await botClient.SendPhotoAsync(
+                    chatId: message.Chat.Id,
+                    photo: fileId);
+            }
+            else if (update.Message.Document != null)
+            {
+                //string fileId = "BQACAgIAAxkBAAIDv2L1WlCG65zj2EzZzINAa2EMPU8IAAIjHgACl02oS28z4Tk0pGnqKQQ";
+                var fileId = update.Message.Document.FileId;
+                Message messageResponse = await botClient.SendDocumentAsync(
+                    chatId: message.Chat.Id,
+                    document: fileId);
+            }
+
+            return;
         }
 
         Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)

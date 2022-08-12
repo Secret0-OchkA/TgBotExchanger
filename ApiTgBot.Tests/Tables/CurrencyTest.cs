@@ -1,11 +1,4 @@
-﻿using ApiTgBot.Models.EF.Tables;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ApiTgBot.Tests.Tables
+﻿namespace ApiTgBot.Tests.Tables
 {
     internal class CurrencyTest
     {
@@ -14,7 +7,7 @@ namespace ApiTgBot.Tests.Tables
         Currency c_BTC;
         Currency zero;
         [SetUp]
-        public void Setup() 
+        public void Setup()
         {
             a_USD = new Currency();
             a_USD.Amount = 5;
@@ -45,7 +38,7 @@ namespace ApiTgBot.Tests.Tables
         [Test]
         public void Should_ThrowExc_When_TypeNoMatch()
         {
-            Assert.That(()=> a_USD + c_BTC, Throws.TypeOf<ArgumentException>());
+            Assert.That(() => a_USD + c_BTC, Throws.TypeOf<ArgumentException>());
         }
 
         [Test]
