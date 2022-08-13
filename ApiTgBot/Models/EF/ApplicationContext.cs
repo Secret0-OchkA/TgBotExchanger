@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ApiTgBot.Models.EF
 {
-    public class ApplicationContext : DbContext, IApplicationContext
+    public class ApplicationContext : DbContext
     {
         public DbSet<Account> Accounts { get; set; } = null!;
         public DbSet<Currency> Currencies { get; set; } = null!;
@@ -22,9 +22,6 @@ namespace ApiTgBot.Models.EF
 
             modelBuilder.Entity<Transfer>().Property(t => t.Number).IsRequired();
             modelBuilder.Entity<Transfer>().Property(t => t.Code).IsRequired();
-            modelBuilder.Entity<Transfer>().Ignore(t => t.ConfirmHandle);
-            modelBuilder.Entity<Transfer>().Ignore(t => t.CancelHandle);
-            modelBuilder.Entity<Transfer>().Ignore(t => t.ErrorHandle);
             base.OnModelCreating(modelBuilder);
         }
     }

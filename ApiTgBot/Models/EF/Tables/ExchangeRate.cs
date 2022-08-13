@@ -2,10 +2,10 @@
 {
     public class ExchangeRate
     {
-        public int Id { get; set; }
-        public CurrencyType SetCurrency { get; set; } //in  currency
-        public CurrencyType GetCurrency { get; set; } //out currency
-        public decimal Rate { get; set; }
+        public int Id { get; set; } = 0;
+        public CurrencyType SetCurrency { get; set; } = CurrencyType.NotCurrency; //in  currency
+        public CurrencyType GetCurrency { get; set; } = CurrencyType.NotCurrency;//out currency
+        public decimal Rate { get; set; } = 1;
 
         public Currency Convert(Currency currency)
         {

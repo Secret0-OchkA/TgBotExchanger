@@ -4,14 +4,15 @@ namespace ApiTgBot.Models.EF.Tables
 {
     public class TransferArgument
     {
-        public int Id { get; set; }
-        public TransferArgumentType Type { get; set; }
+        public int Id { get; set; } = 0;
+        public TransferArgumentType Type { get; set; } = TransferArgumentType.NullArgument;
         [Required]
-        public string FileId { get; set; } = "Error";
+        public string FileId { get; set; } = "NullArgument";
     }
 
     public enum TransferArgumentType
     {
+        NullArgument,
         Document,
         Photo
     }

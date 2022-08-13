@@ -74,5 +74,14 @@
 
             Assert.That(() => account.Withdraw(currency), Throws.TypeOf<ArgumentException>());
         }
+        [Test]
+        public void Should_ThrowEx_When_NotMoney()
+        {
+            Currency currency = new();
+            currency.Amount = 9999;
+            currency.Type = CurrencyType.USD;
+
+            Assert.That(() => account.Withdraw(currency), Throws.TypeOf<ArgumentException>());
+        }
     }
 }

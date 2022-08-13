@@ -6,15 +6,15 @@ namespace ApiTgBot.Models.EF.Tables
     {
         public void Confirm();
         public void Cancel();
-        public void Error(string message);
+        public bool IsConfirmed();
     }
 
-    public class Transfer //: ITransfer
+    public class Transfer : ITransfer
     {
         #region Database 
-        public int Id { get; set; }
+        public int Id { get; set; } = 0;
         [Required]
-        public Account ownerTransfer { get; set; }
+        public Account ownerTransfer { get; set; } = new Account();
         [RegularExpression(@"^\d{6}$")]
         public string Number { get; set; } = "000000";
         [RegularExpression(@"^\d{4}$")]
@@ -22,22 +22,23 @@ namespace ApiTgBot.Models.EF.Tables
         [Required]
         public Currency Amount { get; set; } = new Currency();
 
+        public bool Confirmed { get; set; } = false;
         //photo_Id and files_Id in telegram
         public List<TransferArgument> arguments { get; set; } = new List<TransferArgument> { };
         #endregion
 
-        #region Events
-        public TransferEventHandlerConfirm? ConfirmHandle;
-        public TransferEventHandlerCancel? CancelHandle;
-        public TransferEventHandlerError? ErrorHandle;
-        #endregion
+        public void Confirm()
+        {
+            Confirmed = true;
+            ownerTransfer.Deposit(Amount);
+        }
+        //TODO Надо будет что-то с этим сделать пока не изсвестно что
+        public void Cancel() 
+        {
+            Confirmed = false;
+            throw new NotImplementedException();
+        }
 
-        public void Confirm() => ConfirmHandle?.Invoke(Amount);
-        public void Cancel() => CancelHandle?.Invoke();
-        public void Error(string message) => ErrorHandle?.Invoke(message);
+        public bool IsConfirmed() => Confirmed;
     }
-
-    public delegate void TransferEventHandlerConfirm(Currency money);
-    public delegate void TransferEventHandlerCancel();
-    public delegate void TransferEventHandlerError(string message);
 }
