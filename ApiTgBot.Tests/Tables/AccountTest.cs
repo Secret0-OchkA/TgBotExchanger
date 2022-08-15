@@ -1,4 +1,6 @@
-﻿namespace ApiTgBot.Tests.Tables
+﻿using ApiExchangeBot.Models.EF.Tables;
+
+namespace ApiExchangeBot.Tests.Tables
 {
     internal class AccountTest
     {

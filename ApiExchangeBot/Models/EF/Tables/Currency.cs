@@ -1,8 +1,8 @@
-﻿namespace ApiTgBot.Models.EF.Tables
+﻿namespace ApiExchangeBot.Models.EF.Tables
 {
     public class Currency
     {
-        public int Id { get; set; } = 0;
+        public int Id { get; set; }
         public CurrencyType Type { get; set; } = CurrencyType.NotCurrency;
         public decimal Amount { get; set; } = 0;
 

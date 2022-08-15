@@ -1,4 +1,4 @@
-﻿namespace ApiTgBot.Tests.Tables
+﻿namespace ApiExchangeBot.Tests.Tables
 {
     internal class CurrencyTest
     {

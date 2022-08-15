@@ -1,9 +1,14 @@
-﻿namespace ApiTgBot.Models.EF.Tables
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ApiExchangeBot.Models.EF.Tables
 {
-    public class Account : IAccount
+    public class Account
     {
-        public int Id { get; set; } = 0;
-        public string? Name { get; set; } = null;
+        public int Id { get; set; }
+        [Required]
+        public int TelegramId { get; set; } = 0;
+        public string? Name { get; set; } = "Not Account";
         public List<Currency> Wallet { get; set; } = new List<Currency>();
 
         public Currency Deposit(Currency money)
@@ -16,7 +21,7 @@
                                   select c).FirstOrDefault();
             if (currency != null)
             {
-                currency += money;
+                currency.Amount = (currency + money).Amount;
                 return currency;
             }
 
@@ -33,20 +38,15 @@
                                   where c.Type == money.Type
                                   select c).FirstOrDefault();
 
-            if(currency == null)
+            if (currency == null)
                 throw new ArgumentException("Withdraw not exists currency");
 
             if (currency.Amount < money.Amount)
                 throw new ArgumentException("not enough money");
 
-            currency -= money;
+            currency.Amount = (currency - money).Amount;
+
             return currency;
         }
-    }
-
-    public interface IAccount
-    {
-        Currency Deposit(Currency money);
-        Currency Withdraw(Currency money);
     }
 }

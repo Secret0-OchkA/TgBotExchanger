@@ -1,9 +1,15 @@
-﻿namespace ApiTgBot.Models.EF.Tables
+﻿namespace ApiExchangeBot.Models.EF.Tables
 {
     public class ExchangeRate
     {
-        public int Id { get; set; } = 0;
-        public CurrencyType SetCurrency { get; set; } = CurrencyType.NotCurrency; //in  currency
+        public int Id { get; set; }
+        /// <summary>
+        /// More valuable
+        /// </summary>
+        public CurrencyType SetCurrency { get; set; } = CurrencyType.NotCurrency;//in  currency
+        /// <summary>
+        /// Less valuable
+        /// </summary>
         public CurrencyType GetCurrency { get; set; } = CurrencyType.NotCurrency;//out currency
         public decimal Rate { get; set; } = 1;
 

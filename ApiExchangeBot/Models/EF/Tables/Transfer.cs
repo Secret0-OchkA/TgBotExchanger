@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ApiTgBot.Models.EF.Tables
+namespace ApiExchangeBot.Models.EF.Tables
 {
     public interface ITransfer
     {
@@ -12,7 +12,7 @@ namespace ApiTgBot.Models.EF.Tables
     public class Transfer : ITransfer
     {
         #region Database 
-        public int Id { get; set; } = 0;
+        public int Id { get; set; }
         [Required]
         public Account ownerTransfer { get; set; } = new Account();
         [RegularExpression(@"^\d{6}$")]
@@ -33,7 +33,7 @@ namespace ApiTgBot.Models.EF.Tables
             ownerTransfer.Deposit(Amount);
         }
         //TODO Надо будет что-то с этим сделать пока не изсвестно что
-        public void Cancel() 
+        public void Cancel()
         {
             Confirmed = false;
             throw new NotImplementedException();
