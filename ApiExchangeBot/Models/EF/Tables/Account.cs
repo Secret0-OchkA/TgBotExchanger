@@ -31,8 +31,8 @@ namespace ApiExchangeBot.Models.EF.Tables
 
         public Currency Withdraw(Currency money)
         {
-            if (money.Amount < 0)
-                throw new ArgumentException("Withdraw money < 0");
+            if (money.Amount <= 0)
+                throw new ArgumentException("Withdraw money <= 0");
 
             Currency? currency = (from c in Wallet
                                   where c.Type == money.Type

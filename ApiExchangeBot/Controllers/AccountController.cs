@@ -27,10 +27,12 @@ namespace ApiExchangeBot.Controllers
 
         // POST api/<AccountController>
         [HttpPost]
-        public IActionResult Post(int id, string name)
+        public IActionResult Post([FromQuery]int id,[FromQuery] string name)
         {
-            if (id == null || name == null)
-                return BadRequest();
+            if (name == null || name.Equals(string.Empty))
+                return BadRequest("name is null");
+            if (id == 0)
+                return BadRequest("Id must not be equel 0");
 
             Account account = new Account()
             {
@@ -40,7 +42,7 @@ namespace ApiExchangeBot.Controllers
             db.Accounts.Add(account);
             db.SaveChanges();
 
-            return Ok(account);
+            return Created("api/Account",account);
         }
 
         // DELETE api/<AccountController>/5
@@ -49,7 +51,7 @@ namespace ApiExchangeBot.Controllers
         {
             Account account = GetAccount(id);
 
-            if (account != null)
+            if (account.TelegramId != 0)
             {
                 db.Accounts.Remove(account);
                 db.SaveChanges();
@@ -63,12 +65,21 @@ namespace ApiExchangeBot.Controllers
         [HttpPost("{id}/Deposit")]
         public IActionResult Deposit([FromRoute] int id,
             [FromBody] Currency currency,
-            string number,
-            string code)
+            [FromQuery] string number,
+            [FromQuery] string code)
         {
-            AccountFacade account = new(GetAccount(id));
+            Account account = GetAccount(id);
 
-            Transfer transfer = account.Deposit(currency, number, code);
+            if (account.TelegramId == 0 ||
+                number == null || number == string.Empty ||
+                code == null || code == string.Empty ||
+                currency == null || currency.Type == CurrencyType.NotCurrency
+                || currency.Amount <= 0)
+                return BadRequest();
+
+            AccountFacade facade = new(account);
+
+            Transfer transfer = facade.Deposit(currency, number, code);
 
             db.Transfers.Add(transfer);
             db.SaveChanges();
@@ -90,7 +101,7 @@ namespace ApiExchangeBot.Controllers
             {
                 facade.Withdraw(currency);
             }
-            catch(ArgumentException ex)
+            catch(Exception ex)
             {
                 return BadRequest(ex.Message);
             }

@@ -8,8 +8,8 @@
         public void Setup()
         {
             exchangeRate = new();
-            exchangeRate.SetCurrency = CurrencyType.BTC;
-            exchangeRate.GetCurrency = CurrencyType.USD;
+            exchangeRate.inType = CurrencyType.BTC;
+            exchangeRate.outType = CurrencyType.USD;
             exchangeRate.Rate = 2;
         }
 
