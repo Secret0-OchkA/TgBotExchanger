@@ -5,7 +5,6 @@ namespace ApiExchangeBot.Models.EF.Tables
     public interface ITransfer
     {
         public void Confirm();
-        public void Cancel();
         public bool IsConfirmed();
     }
 
@@ -31,12 +30,6 @@ namespace ApiExchangeBot.Models.EF.Tables
         {
             Confirmed = true;
             ownerTransfer.Deposit(Amount);
-        }
-        //TODO Надо будет что-то с этим сделать пока не изсвестно что
-        public void Cancel()
-        {
-            Confirmed = false;
-            throw new NotImplementedException();
         }
 
         public bool IsConfirmed() => Confirmed;
