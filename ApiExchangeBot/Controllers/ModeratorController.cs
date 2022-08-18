@@ -41,6 +41,8 @@ namespace ApiExchangeBot.Controllers
 
             if (transfer.ownerTransfer.TelegramId == 0)
                 return BadRequest();
+            if (transfer.Confirmed)
+                return BadRequest("this operation confirm");
 
             transfer.Confirm();
 

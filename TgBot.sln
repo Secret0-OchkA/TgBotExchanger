@@ -5,11 +5,9 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgBot", "TgBot\TgBot.csproj", "{4A0F341A-BA55-47C9-AAF5-C1379FC45A07}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgBot.Tests", "TgBot.Tests\TgBot.Tests.csproj", "{EFD8DF1C-24B7-4573-AEAF-4B35CAA0AA78}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiExchangeBot.Tests", "ApiTgBot.Tests\ApiExchangeBot.Tests.csproj", "{179D186F-1400-4012-B082-300153B979AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiExchangeBot", "ApiExchangeBot\ApiExchangeBot.csproj", "{E484FFCF-F8DF-40CF-84A0-307F227E4DE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiExchangeBot", "ApiExchangeBot\ApiExchangeBot.csproj", "{E484FFCF-F8DF-40CF-84A0-307F227E4DE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +19,6 @@ Global
 		{4A0F341A-BA55-47C9-AAF5-C1379FC45A07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A0F341A-BA55-47C9-AAF5-C1379FC45A07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A0F341A-BA55-47C9-AAF5-C1379FC45A07}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EFD8DF1C-24B7-4573-AEAF-4B35CAA0AA78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EFD8DF1C-24B7-4573-AEAF-4B35CAA0AA78}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EFD8DF1C-24B7-4573-AEAF-4B35CAA0AA78}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EFD8DF1C-24B7-4573-AEAF-4B35CAA0AA78}.Release|Any CPU.Build.0 = Release|Any CPU
 		{179D186F-1400-4012-B082-300153B979AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{179D186F-1400-4012-B082-300153B979AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{179D186F-1400-4012-B082-300153B979AB}.Release|Any CPU.ActiveCfg = Release|Any CPU

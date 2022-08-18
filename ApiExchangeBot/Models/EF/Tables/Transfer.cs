@@ -28,8 +28,9 @@ namespace ApiExchangeBot.Models.EF.Tables
 
         public void Confirm()
         {
+            if(!Confirmed)
+                ownerTransfer.Deposit(Amount);
             Confirmed = true;
-            ownerTransfer.Deposit(Amount);
         }
 
         public bool IsConfirmed() => Confirmed;

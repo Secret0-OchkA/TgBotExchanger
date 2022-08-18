@@ -57,11 +57,17 @@ namespace ApiExchangeBot.Controllers
             if (exchangeRate == null)
                 return BadRequest();
 
-            AccountFacade accountFacade = new(account);
-            Account result = accountFacade.ConvertyMoney(new Currency { Type = inType, Amount = amount }, exchangeRate);
-            db.SaveChanges();
-
-            return Ok(result);
+            try
+            {
+                AccountFacade accountFacade = new(account);
+                Account result = accountFacade.ConvertyMoney(new Currency { Type = inType, Amount = amount }, exchangeRate);
+                db.SaveChanges();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
