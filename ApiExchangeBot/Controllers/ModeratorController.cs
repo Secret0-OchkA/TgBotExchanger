@@ -33,8 +33,8 @@ namespace ApiExchangeBot.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id) => Ok(GetTransfer(id));
 
-        // PUT api/<ValuesController>/Confirm/5
-        [HttpPut("Confirm/{id}")]
+        // PUT api/<ValuesController>/5/Confirm
+        [HttpPut("{id}/Confirm")]
         public IActionResult ConfirmTransfer(int id)
         {
             Transfer transfer = GetTransfer(id);

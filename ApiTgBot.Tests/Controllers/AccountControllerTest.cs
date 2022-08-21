@@ -82,14 +82,14 @@ namespace ApiExchangeBot.Tests.Controllers
         [TestCase(22,null)]
         public void Should_BadRequest_When_OnParam(int id, string name)
         {
-            IActionResult actual = controller.Post(id, name);
+            IActionResult actual = controller.Create(id, name);
 
             Assert.IsTrue(actual.GetType() == typeof(BadRequestObjectResult));
         }
         [Test]
         public void Should_AddAcc_When_AllOk()
         {
-            CreatedResult? actual = controller.Post(222222,"CreateAcc") as CreatedResult;
+            CreatedResult? actual = controller.Create(222222,"CreateAcc") as CreatedResult;
             Account? expect = (from a in db.Accounts
                                where a.TelegramId == 222222
                                select a).FirstOrDefault();

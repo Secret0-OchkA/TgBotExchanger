@@ -1,0 +1,26 @@
+version: '3.4'
+
+services:
+  tgbot:
+    networks:
+      networkbot:
+    image: ${DOCKER_REGISTRY-}tgbot
+    build:
+      context: .
+      dockerfile: TgBot/Dockerfile
+    depends_on: 
+    - apiexchangebot
+
+  apiexchangebot:
+    networks:
+      networkbot:
+    image: ${DOCKER_REGISTRY-}apiexchangebot
+    build:
+      context: .
+      dockerfile: ApiExchangeBot/Dockerfile
+    ports:
+    - 1234:443/tcp
+
+networks:
+  networkbot:
+    driver: bridge

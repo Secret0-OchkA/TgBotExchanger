@@ -25,9 +25,9 @@ namespace ApiExchangeBot.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id) => Ok(GetAccount(id));
 
-        // POST api/<AccountController>
-        [HttpPost]
-        public IActionResult Post([FromQuery]int id,[FromQuery] string name)
+        // GET api/<AccountController>
+        [HttpGet]
+        public IActionResult Create([FromQuery]int id,[FromQuery] string name)
         {
             if (name == null || name.Equals(string.Empty))
                 return BadRequest("name is null");

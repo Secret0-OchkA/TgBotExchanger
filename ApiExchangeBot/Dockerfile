@@ -8,6 +8,7 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["ApiExchangeBot/ApiExchangeBot.csproj", "ApiExchangeBot/"]
+#COPY ["ApiExchangeBot.csproj", "ApiExchangeBot/"]
 RUN dotnet restore "ApiExchangeBot/ApiExchangeBot.csproj"
 COPY . .
 WORKDIR "/src/ApiExchangeBot"

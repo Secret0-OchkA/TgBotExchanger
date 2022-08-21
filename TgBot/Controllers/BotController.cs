@@ -1,7 +1,9 @@
-﻿using Telegram.Bot;
+﻿using System.Text;
+using Telegram.Bot;
 using Telegram.Bot.Exceptions;
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
+using TgBot.Models;
 
 namespace TgBot.Controllers
 {
@@ -45,20 +47,11 @@ namespace TgBot.Controllers
             // Only process Message updates: https://core.telegram.org/bots/api#message
             if (update.Message is not { } message)
                 return;
-
+               
             var chatId = message.Chat.Id;
 
             await PhotoWork(botClient, update, cancellationToken);
-
-            //Console.WriteLine($"Received a '{messageText}' message in chat {chatId}.");
-
-            //// Echo received message text
-            //Message sentMessage = await botClient.SendTextMessageAsync(
-            //    chatId: chatId,
-            //    text: "You said:\n" + messageText,
-            //    cancellationToken: cancellationToken);
         }
-
         async Task PhotoWork(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {
             // Only process Message updates: https://core.telegram.org/bots/api#message
